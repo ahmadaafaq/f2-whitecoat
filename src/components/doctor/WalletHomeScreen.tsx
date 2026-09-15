@@ -104,6 +104,54 @@ export const WalletHomeScreen: React.FC = () => {
       {/* Interactive Pluxee-Style Doctor Corporate Virtual Card */}
       <DoctorVirtualCard />
 
+      {/* Section: Recent Wallet Transactions Preview (Placed directly below card) */}
+      <div className="rounded-2xl bg-white border border-slate-200 p-5 space-y-4 shadow-xs">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Receipt className="w-4 h-4 text-teal-600" />
+            <h4 className="text-sm font-bold text-slate-900">Recent Transactions & Audit Trail</h4>
+          </div>
+          <button
+            onClick={() => setDoctorStep('SCREEN_6_HISTORY')}
+            className="text-xs font-semibold text-teal-700 hover:text-teal-800 flex items-center gap-1"
+          >
+            <span>View Full Ledger</span>
+            <ChevronRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+
+        {doctorTransactions.length > 0 ? (
+          <div className="space-y-2">
+            {doctorTransactions.map((t) => (
+              <div
+                key={t.id}
+                className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs"
+              >
+                <div>
+                  <div className="font-semibold text-slate-800">{t.merchantName}</div>
+                  <div className="text-[10px] text-slate-500 mt-0.5">
+                    {new Date(t.timestamp).toLocaleDateString()} • {t.itemSummary || 'Spend'} • Txn ID: {t.id}
+                  </div>
+                </div>
+
+                <div className="text-right">
+                  <span className={`font-code font-bold ${
+                    t.type === 'INITIAL_GRANT' ? 'text-emerald-700' : 'text-amber-800'
+                  }`}>
+                    {t.type === 'INITIAL_GRANT' ? `+₹${t.amount}` : `-₹${t.amount}`}
+                  </span>
+                  <div className="text-[10px] text-slate-500">Balance: ₹{t.balanceAfter}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-6 text-xs text-slate-500">
+            No transactions yet. Spend your ₹500 balance at any partner outlet below!
+          </div>
+        )}
+      </div>
+
       {/* Quick Spend Method Bar */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <button
@@ -325,54 +373,6 @@ export const WalletHomeScreen: React.FC = () => {
           ))}
         </div>
 
-      </div>
-
-      {/* Section: Recent Wallet Transactions Preview */}
-      <div className="rounded-2xl bg-white border border-slate-200 p-5 space-y-4 shadow-xs">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Receipt className="w-4 h-4 text-teal-600" />
-            <h4 className="text-sm font-bold text-slate-900">Recent Transactions & Audit Trail</h4>
-          </div>
-          <button
-            onClick={() => setDoctorStep('SCREEN_6_HISTORY')}
-            className="text-xs font-semibold text-teal-700 hover:text-teal-800 flex items-center gap-1"
-          >
-            <span>View Full Ledger</span>
-            <ChevronRight className="w-3.5 h-3.5" />
-          </button>
-        </div>
-
-        {doctorTransactions.length > 0 ? (
-          <div className="space-y-2">
-            {doctorTransactions.map((t) => (
-              <div
-                key={t.id}
-                className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs"
-              >
-                <div>
-                  <div className="font-semibold text-slate-800">{t.merchantName}</div>
-                  <div className="text-[10px] text-slate-500 mt-0.5">
-                    {new Date(t.timestamp).toLocaleDateString()} • {t.itemSummary || 'Spend'} • Txn ID: {t.id}
-                  </div>
-                </div>
-
-                <div className="text-right">
-                  <span className={`font-code font-bold ${
-                    t.type === 'INITIAL_GRANT' ? 'text-emerald-700' : 'text-amber-800'
-                  }`}>
-                    {t.type === 'INITIAL_GRANT' ? `+₹${t.amount}` : `-₹${t.amount}`}
-                  </span>
-                  <div className="text-[10px] text-slate-500">Balance: ₹{t.balanceAfter}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-6 text-xs text-slate-500">
-            No transactions yet. Spend your ₹500 balance at any partner outlet above!
-          </div>
-        )}
       </div>
 
       {/* Phase 2 Relationship Teaser Banner */}
