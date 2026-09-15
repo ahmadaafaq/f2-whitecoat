@@ -216,7 +216,15 @@ export const F2Provider: React.FC<{ children: React.ReactNode }> = ({ children }
   // App UI Navigation States
   const [activeView, setActiveView] = useState<ActiveAppView>('DOCTOR_JOURNEY');
   const [doctorStep, setDoctorStep] = useState<DoctorScreenStep>('SCREEN_4_WALLET_HOME');
-  const [isFoodOrderingOpen, setIsFoodOrderingOpen] = useState(false);
+  const [isFoodOrderingOpen, setRawIsFoodOrderingOpen] = useState(false);
+
+  const setIsFoodOrderingOpen = (open: boolean) => {
+    setRawIsFoodOrderingOpen(open);
+    if (open) {
+      setActiveView('DOCTOR_JOURNEY');
+      setDoctorStep('SCREEN_FOOD_ORDERING');
+    }
+  };
   const [selectedMerchantForPay, setSelectedMerchantForPay] = useState<Merchant | null>(null);
   const [lastCompletedTxn, setLastCompletedTxn] = useState<Transaction | null>(null);
   const [isVerifyingRegistry, setIsVerifyingRegistry] = useState(false);

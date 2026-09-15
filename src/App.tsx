@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { F2Provider, useF2 } from './context/F2Context';
 import { Header } from './components/Header';
 import { WelcomeScreen } from './components/doctor/WelcomeScreen';
+import { DoctorSignupScreen } from './components/doctor/DoctorSignupScreen';
 import { VerificationScreen } from './components/doctor/VerificationScreen';
 import { VerificationResultScreen } from './components/doctor/VerificationResultScreen';
 import { WalletHomeScreen } from './components/doctor/WalletHomeScreen';
+import { DoctorFoodOrderingScreen } from './components/doctor/DoctorFoodOrderingScreen';
 import { PaymentScreen } from './components/doctor/PaymentScreen';
 import { WalletHistoryScreen } from './components/doctor/WalletHistoryScreen';
 import { Phase2Screen } from './components/doctor/Phase2Screen';
@@ -13,6 +15,7 @@ import { AdminConsoleView } from './components/admin/AdminConsoleView';
 import { Phase2CRMView } from './components/crm/Phase2CRMView';
 import { StrategyDocumentModal } from './components/strategy/StrategyDocumentModal';
 import { DoctorIDCardModal } from './components/common/DoctorIDCardModal';
+import { DoctorMobileShell } from './components/doctor/DoctorMobileShell';
 import { AnimatePresence, motion } from 'motion/react';
 
 const MainAppContent: React.FC = () => {
@@ -20,9 +23,11 @@ const MainAppContent: React.FC = () => {
   const [isStrategyOpen, setIsStrategyOpen] = useState(false);
   const [isIDCardOpen, setIsIDCardOpen] = useState(false);
 
-  // Render Doctor Experience wireframe step 1-7
+  // Render Doctor Experience wireframe step 0-7 + Food ordering
   const renderDoctorStep = () => {
     switch (doctorStep) {
+      case 'SCREEN_0_SIGNUP':
+        return <DoctorSignupScreen />;
       case 'SCREEN_1_WELCOME':
         return <WelcomeScreen />;
       case 'SCREEN_2_VERIFICATION':
@@ -31,6 +36,8 @@ const MainAppContent: React.FC = () => {
         return <VerificationResultScreen />;
       case 'SCREEN_4_WALLET_HOME':
         return <WalletHomeScreen />;
+      case 'SCREEN_FOOD_ORDERING':
+        return <DoctorFoodOrderingScreen />;
       case 'SCREEN_5_PAYMENT':
         return <PaymentScreen />;
       case 'SCREEN_6_HISTORY':
@@ -61,7 +68,14 @@ const MainAppContent: React.FC = () => {
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
           >
-            {activeView === 'DOCTOR_JOURNEY' && renderDoctorStep()}
+            {activeView === 'DOCTOR_JOURNEY' && (
+              <DoctorMobileShell
+                onOpenDocCard={() => setIsIDCardOpen(true)}
+                onOpenStrategy={() => setIsStrategyOpen(true)}
+              >
+                {renderDoctorStep()}
+              </DoctorMobileShell>
+            )}
             {activeView === 'MERCHANT_POS' && <MerchantPOSView />}
             {activeView === 'ADMIN_CONSOLE' && <AdminConsoleView />}
             {activeView === 'PHASE2_CRM' && <Phase2CRMView />}

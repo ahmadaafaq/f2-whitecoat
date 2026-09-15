@@ -239,17 +239,17 @@ export const DoctorVirtualCard: React.FC = () => {
         </div>
 
         {/* Instant Action Strip Below Card */}
-        <div className="mt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 p-3 rounded-xl bg-teal-50/60 border border-teal-100 text-xs">
+        <div className="mt-3 flex flex-col gap-2 p-3 rounded-xl bg-teal-50/70 border border-teal-100 text-xs">
           <div className="flex items-center gap-2 text-teal-900">
             <Utensils className="w-4 h-4 text-teal-600 shrink-0" />
-            <span className="font-semibold">Order Food to Hospital or Lounge</span>
+            <span className="font-semibold text-[11px] sm:text-xs">Order Food to Hospital or Lounge</span>
           </div>
 
           <button
             onClick={() => setIsFoodOrderingOpen(true)}
-            className="w-full sm:w-auto px-3.5 py-2 rounded-lg bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs shadow-xs flex items-center justify-center gap-1.5 transition-all"
+            className="w-full py-2 px-3 rounded-lg bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs shadow-xs flex items-center justify-center gap-1.5 transition-all active:scale-98"
           >
-            <Sparkles className="w-3.5 h-3.5" />
+            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
             <span>Order on Swiggy / Zomato / Canteen</span>
           </button>
         </div>
@@ -264,34 +264,34 @@ export const DoctorVirtualCard: React.FC = () => {
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden"
           >
-            <div className="p-5 rounded-2xl bg-white border border-slate-200 space-y-5 shadow-xs">
-              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                <div className="flex items-center gap-2">
+            <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 space-y-4 shadow-xs">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-2.5">
+                <div className="flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-teal-600" />
                   <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-                    Pluxee Rule Engine & Card Controls
+                    Rule Engine & Controls
                   </h4>
                 </div>
-                <span className="text-[11px] text-slate-500">Instant Enforcement</span>
+                <span className="text-[10px] text-slate-500 font-medium">Instant Sync</span>
               </div>
 
-              {/* Toggles */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Toggles (Single column for mobile clarity) */}
+              <div className="grid grid-cols-1 gap-2.5">
                 
                 {/* Online Ordering Toggle */}
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
-                  <div className="space-y-0.5 pr-2">
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-2">
+                  <div className="space-y-0.5 min-w-0 pr-1">
                     <div className="flex items-center gap-1.5 font-semibold text-xs text-slate-800">
-                      <Globe className="w-3.5 h-3.5 text-teal-600" />
+                      <Globe className="w-3.5 h-3.5 text-teal-600 shrink-0" />
                       <span>Online Delivery Apps</span>
                     </div>
-                    <p className="text-[11px] text-slate-500">
+                    <p className="text-[10px] text-slate-500 leading-tight">
                       Allow Swiggy, Zomato & hospital food apps
                     </p>
                   </div>
                   <button
                     onClick={() => toggleCardSetting(currentDoctor.id, 'online', !card.onlineTxnsEnabled)}
-                    className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors ${
+                    className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors shrink-0 ${
                       card.onlineTxnsEnabled ? 'bg-teal-600' : 'bg-slate-300'
                     }`}
                   >
@@ -302,19 +302,19 @@ export const DoctorVirtualCard: React.FC = () => {
                 </div>
 
                 {/* Contactless Tap Toggle */}
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
-                  <div className="space-y-0.5 pr-2">
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-2">
+                  <div className="space-y-0.5 min-w-0 pr-1">
                     <div className="flex items-center gap-1.5 font-semibold text-xs text-slate-800">
-                      <Wifi className="w-3.5 h-3.5 text-teal-600 rotate-90" />
+                      <Wifi className="w-3.5 h-3.5 text-teal-600 rotate-90 shrink-0" />
                       <span>Contactless POS Tap</span>
                     </div>
-                    <p className="text-[11px] text-slate-500">
+                    <p className="text-[10px] text-slate-500 leading-tight">
                       Tap-to-pay at hospital canteen terminals
                     </p>
                   </div>
                   <button
                     onClick={() => toggleCardSetting(currentDoctor.id, 'contactless', !card.contactlessEnabled)}
-                    className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors ${
+                    className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors shrink-0 ${
                       card.contactlessEnabled ? 'bg-teal-600' : 'bg-slate-300'
                     }`}
                   >
@@ -327,10 +327,10 @@ export const DoctorVirtualCard: React.FC = () => {
               </div>
 
               {/* Daily Limit Slider */}
-              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
                 <div className="flex items-center justify-between text-xs">
                   <span className="font-semibold text-slate-800">Daily Spending Limit</span>
-                  <span className="font-code font-bold text-teal-800 bg-teal-100 px-2 py-0.5 rounded">
+                  <span className="font-mono font-bold text-teal-800 bg-teal-100 px-2 py-0.5 rounded text-[11px]">
                     ₹{customLimit} / day
                   </span>
                 </div>
@@ -347,7 +347,7 @@ export const DoctorVirtualCard: React.FC = () => {
                   }}
                   className="w-full accent-teal-600 h-1.5 bg-slate-200 rounded-lg cursor-pointer"
                 />
-                <div className="flex justify-between text-[10px] text-slate-400">
+                <div className="flex justify-between text-[10px] text-slate-400 font-mono">
                   <span>₹100 (Min)</span>
                   <span>₹500 (Default Grant)</span>
                   <span>₹1,000 (Max)</span>

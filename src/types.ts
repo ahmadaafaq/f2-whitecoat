@@ -242,10 +242,12 @@ export type ActiveAppView =
   | 'STRATEGY_DOC';
 
 export type DoctorScreenStep = 
+  | 'SCREEN_0_SIGNUP'
   | 'SCREEN_1_WELCOME'
   | 'SCREEN_2_VERIFICATION'
   | 'SCREEN_3_RESULT'
   | 'SCREEN_4_WALLET_HOME'
+  | 'SCREEN_FOOD_ORDERING'
   | 'SCREEN_5_PAYMENT'
   | 'SCREEN_6_HISTORY'
   | 'SCREEN_7_PHASE2_CTA';

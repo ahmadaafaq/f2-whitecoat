@@ -47,6 +47,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenDocCard, onOpenStrategy })
   ];
 
   const doctorSteps: { step: DoctorScreenStep; label: string; num: number }[] = [
+    { step: 'SCREEN_0_SIGNUP', label: '0. Mock Signup (₹500)', num: 0 },
     { step: 'SCREEN_1_WELCOME', label: '1. Welcome', num: 1 },
     { step: 'SCREEN_2_VERIFICATION', label: '2. Verify Profile', num: 2 },
     { step: 'SCREEN_3_RESULT', label: '3. Status & Grant', num: 3 },
