@@ -1,0 +1,6 @@
+{
+  "name": "F2 Fintech — White Coat Club",
+  "description": "Doctor workspace engagement ecosystem with medical registry verification, ₹500 workspace benefit wallet, hospital merchant network, and Phase 2 financial advisory partner platform.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
